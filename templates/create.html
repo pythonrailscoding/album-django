@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Photo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body class="m-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="jumbotron">
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="description" class="form-label">Description</label>
+                          <textarea required type="text" class="form-control" name="description" row="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="category" class="form-label">Category</label>
+                          <select class="form-control" name="exist_cat">
+                              <option value="none">Select from pre-existing Category</option>
+                              {% for cat in cat_list %}
+                              <option value="{{ cat.id }}">{{ cat.name }}</option>
+                              {% endfor %}
+                              </select>
+                              
+                              <center><b>OR</b></center>
+                              
+                          <input type="text" class="form-control" name="category" placeholder="Create a New Category for this Image">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload File</label>
+                            <input class="form-control" required type="file" name="formFile">
+                          </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                  </div>
+                </div>    
+        </div>
+    </div>
+</body>
+</html>
